@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "common_libs"
+version = "0.1.0"
+description = "Shared utilities for Exus research workflows."
+requires-python = "==3.10"
+authors = [
+  {name = "Mikel Perez"}
+]
+dependencies = [
+  "pandas",
+  "numpy",
+  "requests",
+  "sqlalchemy",
+  "openpyxl",
+  "pdfplumber",
+  "msal",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["common_libs*"]

@@ -1,0 +1,43 @@
+# Ignore Jupyter notebook outputs, except .ipynb files
+notebooks/**/*
+!notebooks/**/
+!notebooks/**/*.ipynb
+
+
+# Python cache and build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+
+# Notebook/tooling cache
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Project exports
+outputs/**
+
+.env
+data/temp/*
+logs/*.log
+
+data/**
+!data/finance/
+!data/finance/**

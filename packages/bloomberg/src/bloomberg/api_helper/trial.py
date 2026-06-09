@@ -1,0 +1,2 @@
+def trial():
+    return "Heyy!"

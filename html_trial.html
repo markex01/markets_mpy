@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy Storage Summit 2026 — Exus</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #009CB8;
+    --dark-teal: #00758A;
+    --navy: #0E2841;
+    --deep-green: #005B6C;
+    --light-teal: #3CB3BE;
+    --ice-teal: #CEEDF0;
+    --pale-teal: #98D0D4;
+    --orange: #F26B43;
+    --dark: #080808;
+    --white: #FFFFFF;
+    --gray: #A4A3A4;
+    --light-gray: #E7E6E6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', Arial, sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .page {
+    max-width: 794px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--white);
+  }
+
+  /* ── HEADER ─────────────────────────────────────────── */
+  .header {
+    background: var(--navy);
+    padding: 28px 36px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 4px solid var(--teal);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header-left .label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pale-teal);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .header-left h1 {
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+  .header-left h1 span { color: var(--teal); }
+  .header-right { text-align: right; }
+  .header-right .date {
+    font-size: 10px;
+    color: var(--pale-teal);
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .header-right .tag {
+    display: inline-block;
+    background: var(--teal);
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-top: 6px;
+  }
+
+  /* ── PRIORITY BAND ───────────────────────────────────── */
+  .priority-band {
+    background: var(--ice-teal);
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--pale-teal);
+  }
+  .band-label {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dark-teal);
+    padding-bottom: 7px;
+    border-bottom: 2px solid var(--teal);
+    margin-bottom: 9px;
+    display: block;
+  }
+  .priority-items {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .priority-item {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .priority-num {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    background: var(--teal);
+    color: white;
+    font-size: 11px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .priority-item p {
+    font-size: 12px;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+  .priority-item p strong { color: var(--dark-teal); font-weight: 700; }
+  .teams-note {
+    width: 100%;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid var(--pale-teal);
+    font-size: 12px;
+    color: var(--deep-green);
+    font-weight: 700;
+  }
+  .priority-intro {
+    font-size: 12px;
+    color: var(--navy);
+    line-height: 1.5;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--pale-teal);
+    font-style: italic;
+  }
+  .priority-inner { display: block; }
+
+  /* ── BODY GRID — 2 cols on desktop ───────────────────── */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .section {
+    padding: 18px 22px;
+    border-right: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .section.no-border-right { border-right: none; }
+  .section.no-border-bottom { border-bottom: none; }
+  .span-full {
+    grid-column: 1 / 3;
+    border-right: none;
+  }
+
+  .section-title {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dark-teal);
+    border-left: 3px solid var(--teal);
+    padding-left: 8px;
+    margin-bottom: 12px;
+  }
+
+  .alpha-callout {
+    background: #009CB8;
+    padding: 9px 12px;
+    margin-bottom: 10px;
+  }
+  .alpha-callout p {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.4;
+  }
+  .alpha-callout p span { color: var(--navy); }
+
+  ul.clean {
+    list-style: none;
+    padding: 0;
+  }
+  ul.clean li {
+    padding: 4px 0 4px 12px;
+    border-left: 2px solid var(--ice-teal);
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: #222;
+    line-height: 1.45;
+  }
+  ul.clean li strong { color: var(--dark-teal); }
+
+  .sub-section-title {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin: 12px 0 6px;
+  }
+
+  /* ── MARKET TABLE ─────────────────────────────────────── */
+  .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table.markets {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin-top: 10px;
+  }
+  table.markets thead tr { background: var(--teal); }
+  table.markets thead th {
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    text-align: left;
+  }
+  table.markets tbody tr:nth-child(even) { background: var(--ice-teal); }
+  table.markets tbody tr:nth-child(odd) { background: var(--white); }
+  table.markets tbody td {
+    padding: 8px 14px;
+    vertical-align: top;
+    line-height: 1.45;
+    color: #1a1a1a;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  table.markets tbody td:first-child {
+    font-weight: 900;
+    color: var(--navy);
+    font-size: 12px;
+    white-space: nowrap;
+    border-left: 4px solid var(--teal);
+  }
+
+  /* ── FOOTER ───────────────────────────────────────────── */
+  .footer {
+    background: var(--navy);
+    padding: 10px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 3px solid var(--teal);
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .footer p { font-size: 9px; color: var(--pale-teal); letter-spacing: 0.5px; }
+  .footer .logo { font-size: 13px; font-weight: 900; color: var(--white); letter-spacing: 1px; }
+  .footer .logo span { color: var(--teal); }
+
+  /* ── MOBILE OVERRIDES (≤ 600 px) ─────────────────────── */
+  @media (max-width: 600px) {
+
+    body { font-size: 14px; }
+
+    .header {
+      padding: 20px 18px 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .header-left h1 { font-size: 20px; }
+    .header-right { text-align: left; }
+
+    .priority-band { padding: 14px 16px; }
+
+    .priority-items {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .priority-item { flex: unset; }
+    .priority-item p { font-size: 13px; }
+
+    .priority-intro { font-size: 13px; }
+    .teams-note { font-size: 13px; }
+
+    /* Stack two columns into one */
+    .body {
+      grid-template-columns: 1fr;
+    }
+    .span-full {
+      grid-column: 1 / 2;
+    }
+    .section {
+      padding: 16px 16px;
+      border-right: none;
+    }
+    .section.no-border-right { border-right: none; }
+
+    ul.clean li { font-size: 13px; }
+    .alpha-callout p { font-size: 13px; }
+
+    /* Markets table: horizontal scroll on mobile */
+    .table-scroll-wrapper {
+      border-top: 1px solid var(--light-gray);
+    }
+    table.markets { font-size: 12px; min-width: 580px; }
+    table.markets tbody td:first-child { font-size: 13px; }
+
+    .footer {
+      padding: 10px 16px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="label">Key Takeaways</div>
+      <h1>Energy Storage Summit <span>2026</span></h1>
+    </div>
+    <div class="header-right">
+      <div class="date">London · February 2026</div>
+      <div class="tag">Key Takeaways</div>
+    </div>
+  </div>
+
+  <!-- PRIORITY BAND -->
+  <div class="priority-band">
+    <div class="priority-inner">
+      <span class="band-label">What's in it for Exus</span>
+      <div class="priority-intro">The market is clearly converging toward integrated energy solutions that combine generation, storage, and behind-the-meter delivery — precisely the model we are building around. The opportunity is real, but the scenario is highly competitive.</div>
+      <div class="priority-items">
+        <div class="priority-item">
+          <div class="priority-num">1</div>
+          <p><strong>Grid connections = strategic asset.</strong> Pre-secured capacity is the scarcest resource in the system. Treat it accordingly.</p>
+        </div>
+        <div class="priority-item">
+          <div class="priority-num">2</div>
+          <p><strong>Validate optimizer partnerships now.</strong> Performance gaps between providers are widening and directly drive returns.</p>
+        </div>
+        <div class="priority-item">
+          <div class="priority-num">3</div>
+          <p><strong>Position as power provider for data centres.</strong> The window is open — but it closes as the model gets commoditized.</p>
+        </div>
+      </div>
+      <div class="teams-note">Highly relevant for: BESS Development · M&amp;A · Industrial Solutions</div>
+    </div>
+  </div>
+
+  <!-- TWO COLUMN BODY -->
+  <div class="body">
+
+    <!-- COL 1: DATA CENTRES -->
+    <div class="section">
+      <div class="section-title">Key Takeaways: Data Centres</div>
+
+      <div class="alpha-callout">
+        <p>Data centres are shifting from passive consumers → <span>active energy market participants.</span> Energy is becoming the next vector of vertical integration.</p>
+      </div>
+
+      <div class="sub-section-title">From energy consumers to energy nodes</div>
+      <ul class="clean">
+        <li>Just as Amazon built AWS for itself and later commercialized it, and as Meta and Google vertically integrated into submarine cables, <strong>energy is becoming the next vector of integration.</strong></li>
+        <li><strong>Hyperscalers</strong> (Google, Microsoft, Amazon) — especially in the US — are starting to build their own generation, adding on-site storage, and in some cases <strong>becoming net sellers to the grid</strong>. Europe is moving slower but the direction is the same.</li>
+        <li>The <strong>main bottleneck is grid interconnection</strong> and time. Three strategic options to overcome it:
+          <ul style="list-style:none; margin-top:5px; padding-left:0;">
+            <li style="padding: 3px 0 3px 12px; border-left: 2px solid var(--pale-teal); margin-bottom:4px; font-size:12px; line-height:1.4;"><strong>Pre-secure grid capacity:</strong> developers who have done so hold a massive competitive advantage.</li>
+            <li style="padding: 3px 0 3px 12px; border-left: 2px solid var(--pale-teal); margin-bottom:4px; font-size:12px; line-height:1.4;"><strong>Load modularity (flexible interconnection):</strong> shifting non-critical loads to off-peak periods. A 3–5% reduction at peak (5–9 PM) can unlock significantly more grid access — one US study showed 650 additional connections in the same Ashburn location. Still largely unquantified in Europe.</li>
+            <li style="padding: 3px 0 3px 12px; border-left: 2px solid var(--pale-teal); margin-bottom:4px; font-size:12px; line-height:1.4;"><strong>Self-powered microgrids</strong> (dispatchable gas + solar/wind + BESS, behind-the-meter) are gaining most traction. The data centre becomes an energy node — a clear opportunity for integrated developers.</li>
+          </ul>
+        </li>
+        <li><strong>Fuel cells:</strong> Equinix has commissioned 30 installations of 100 MW fuel cells across 20 sites. 20% lower emissions than gas, approaching price competitiveness. Scale is already significant — a market signal worth monitoring.</li>
+      </ul>
+
+      <div class="sub-section-title">AI-driven infrastructure shift</div>
+      <ul class="clean">
+        <li>AI is making traditional in-building UPS systems obsolete. <strong>Rising power per rack</strong> is pushing data centres toward <strong>large external battery systems</strong> — a major replacement investment cycle.</li>
+        <li><strong>AI training creates sudden, extreme power swings.</strong> The <strong>challenge is now power stability</strong>, not just supply. Value is migrating from battery cells to advanced power conversion and control systems.</li>
+      </ul>
+    </div>
+
+    <!-- COL 2: BESS -->
+    <div class="section no-border-right">
+      <div class="section-title">Key Takeaways: BESS Markets</div>
+
+      <div class="alpha-callout">
+        <p>Alpha is no longer in market selection — it is in: <span>grid connection timing · optimizer quality · revenue stack depth.</span> Whoever secures grid connection early and builds a superior revenue stack wins.</p>
+      </div>
+
+      <div class="sub-section-title">Revenue model transition</div>
+      <ul class="clean">
+        <li><strong>Ancillary revenues compressing</strong> across markets. UK has already crashed — the rest of Europe follows with a 1–3 year lag. <strong>Arbitrage is taking over</strong> as core revenue driver; tolling agreements emerging as financing bridge.</li>
+        <li>Projects underwritten on frequency response assumptions are <strong>mispricing risk</strong>.</li>
+      </ul>
+
+      <div class="sub-section-title">Duration as saturation indicator</div>
+      <ul class="clean">
+        <li>Duration mix is the clearest market saturation proxy. 1–2h assets = ancillary-driven. <strong>Shift toward 4h+ signals arbitrage maturity</strong>.</li>
+      </ul>
+
+      <div class="sub-section-title">Private hedging products filling the gap</div>
+      <ul class="clean">
+        <li><strong>Private floors, collars, and merchant revenue guarantees</strong> — from capital allocators, not governments — growing rapidly. A genuine gap filled by a small number of <strong>sophisticated infrastructure funds</strong>. Tracking who offers them and at what cost is strategically relevant.</li>
+      </ul>
+
+      <div class="sub-section-title">Co-location with solar PV is not a silver bullet</div>
+      <ul class="clean">
+        <li><strong>Execution risk is systematically underestimated</strong>. Revenue attribution between solar PPAs and BESS dispatch is complex.</li>
+      </ul>
+
+      <div class="sub-section-title">Supply chain shift: China repositioning &amp; European manufacturing</div>
+      <ul class="clean">
+        <li><strong>China tightening battery export policy</strong> — higher prices, stricter requirements, fewer fiscal incentives — narrows the cost advantage of Chinese suppliers.</li>
+        <li>Opens space for European manufacturers, especially in <strong>BtM and data centre segments where buyers prioritize supply security over lowest capex</strong>.</li>
+        <li>BaaS models gaining traction: <strong>European financiers funding Chinese equipment</strong> deployed locally. Worth monitoring — open questions on performance guarantees and incentive alignment.</li>
+      </ul>
+    </div>
+
+    <!-- MARKET TABLE — full width -->
+    <div class="section span-full" style="padding: 16px 0 0 0; border-bottom: none;">
+      <div class="section-title" style="padding: 0 24px; margin-bottom: 10px;">BESS Markets Snapshot</div>
+      <div class="table-scroll-wrapper">
+        <table class="markets">
+          <thead>
+            <tr>
+              <th style="width:80px">Market</th>
+              <th style="width:170px">Status</th>
+              <th style="width:220px">Risks</th>
+              <th style="width:250px">What Makes It Attractive</th>
+              <th>What to Watch</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Germany</td>
+              <td>Currently the <strong>strongest pure merchant opportunity</strong> in Europe. €130/MWh avg spreads, no subsidies needed.</td>
+              <td>The <strong>2029 BKZ grid charges reform</strong> creates a binary shift in grid economics, while the fragmented 800+ DSO landscape introduces significant <strong>location-specific execution risk</strong>.</td>
+              <td>Europe's <strong>largest and most liquid market</strong> combines high spreads and rapidly increasing negative price hours. Structural volatility from rising renewables and redispatch costs supports storage value. <strong>Upside depends on securing grid access early,</strong> structuring hybrid models, and outperforming through superior optimization.</td>
+              <td><strong>Post-2029 grid economics</strong>, cannibalization dynamics, and widening optimizer performance gaps.</td>
+            </tr>
+            <tr>
+              <td>UK</td>
+              <td>The most mature BESS market and a forward indicator for Europe. <strong>Location within GB is now a proven alpha driver</strong>.</td>
+              <td>Ancillary market saturation and a large pipeline mean assets entering from 2026 onward will face structurally lower revenues. <strong>Co-location gate misalignment</strong> can undermine project viability.</td>
+              <td>A deep and transparent market with a strong track record. <strong>Returns are increasingly location-driven,</strong> with constraint-heavy and distribution-constrained zones consistently outperforming.</td>
+              <td>The sustainability of current revenue levels and the real investable pipeline after <strong>Grid reform attrition</strong>.</td>
+            </tr>
+            <tr>
+              <td>Italy</td>
+              <td>Easy money is now over post-MACSE. <strong>Execution quality and good optimization define returns</strong>.</td>
+              <td><strong>Margin reset after MACSE</strong> and node-specific cannibalization risk require careful underwriting, especially under ambitious renewables expansion targets.</td>
+              <td>Attractive through multi-product revenue stacking across day-ahead, intraday and balancing markets. <strong>Strong optimization capabilities and node selection create differentiated outcomes</strong>.</td>
+              <td><strong>Spread resilience</strong> under renewables growth and node-level saturation risk.</td>
+            </tr>
+            <tr>
+              <td>Spain</td>
+              <td>Strong structural price signals, but <strong>constrained by bankability</strong>.</td>
+              <td><strong>Hydro-driven volatility and merchant revenues limit financing</strong>, as lenders require structured floors and guarantees.</td>
+              <td>Extreme volatility and frequent negative prices create a <strong>compelling structural case</strong> for storage. Upside lies in timing, regulatory evolution and early positioning around potential PV recovery and new ancillary markets.</td>
+              <td><strong>Bankability solutions, regulatory developments post-blackout,</strong> and confirmation of a structural demand-driven price rebound.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Energy Storage Summit 2026 · London</p>
+    <div class="logo">EX<span>US</span></div>
+  </div>
+
+</div>
+</body>
+</html>

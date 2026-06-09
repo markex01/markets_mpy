@@ -1,0 +1,15 @@
+base_path: "/Users/mikelperez/0_Python_projects_v3_reduced/0_Python_projects_reduced/"
+
+configs: 
+  folder: "configs"
+  config: "configs/config.yaml"
+
+data:
+  folder: "data"
+  entsoe: 
+    folder: "data/entsoe"
+    generation: "data/entsoe/entsoe_generation_{country}.pickle"
+  aurora: 
+    folder: 'data/aurora'
+    forecast_registry: 'data/aurora/aurora_forecast_registry.json'
+  

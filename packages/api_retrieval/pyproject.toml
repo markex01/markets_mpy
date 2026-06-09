@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "api_retrieval"
+version = "0.1.1"
+description = "ETL routines for Exus market priors and Aurora retrievals."
+requires-python = "==3.10.*"
+authors = [
+  {name = "Mikel Perez"}
+]
+dependencies = [
+  "pandas",
+  "numpy",
+  "matplotlib",
+  "plotly",
+  "statsmodels",
+  "pmdarima",
+  "pyarrow",
+  "fastparquet",
+  "sqlalchemy",
+  "pyodbc",
+  "seaborn",
+  "requests",
+  "beautifulsoup4",
+  "selenium",
+  "lxml",
+  "openpyxl",
+  "pdfplumber",
+  "pypandoc",
+  "xlrd",
+  "tabula",
+  "jupyter",
+  "jupyterlab",
+  "ipython",
+  "jupyter-contrib-nbextensions",
+  "papermill",
+  "openai",
+  "langchain-core",
+  "langchain-openai",
+  "langsmith",
+  "click",
+  "tqdm",
+  "pyyaml",
+  "colorlog",
+  "xlwings",
+  "eurostat",
+  "entsoe-py",
+  "pvlib", 
+  "geopy",
+  "geopandas"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["api_retrieval*"]

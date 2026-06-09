@@ -1,0 +1,20 @@
+azure:
+  tenant_id: 4b809dda-8007-4925-9ba2-44a575030c31
+  client_id: 7ecfd8cf-7f45-4ac9-9269-862951c9d5f0
+  # IMPORTANT:
+  # The Azure client secret MUST NOT be stored in this file.
+  # It is intentionally loaded from the environment variable:
+  #
+  #   AZURE_CLIENT_SECRET
+  #
+  # This prevents accidental leakage via source control.
+  # client_secret: <DO NOT PUT SECRETS HERE>
+  # $env:AZURE_CLIENT_SECRET="your_rotated_secret_here"
+
+sharepoint:
+  hostname: exusmanagementpartners.sharepoint.com
+  site_path: sites/EU_STM
+  drive_name: Documents
+
+upload:
+  timeout_seconds: 60

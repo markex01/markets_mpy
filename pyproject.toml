@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-unified"
+version = "0.1.0"
+description = "Unified monorepo for Exus market research workflows."
+requires-python = ">=3.10"
+authors = [
+  {name = "Mikel Perez"}
+]
+
+[project.optional-dependencies]
+dev = [
+  "common_libs",
+  "api_retrieval",
+  "aurora_forecasts",
+  "bloomberg",
+]
+
+[tool.setuptools]
+# No top-level source — packages are installed individually from packages/
+package-dir = {}
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["packages*", "notebooks*", "scripts*"]
