@@ -3,6 +3,7 @@
 # a corresponding entry should be added here if not already present.
 
 region_tracker_map = {
+    # The keys in this dict should match the country codes used in the API parameters
     'esp': 'Spain',
     'fra': 'France',
     'deu': 'Germany',
