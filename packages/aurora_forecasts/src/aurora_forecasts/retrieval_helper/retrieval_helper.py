@@ -11,6 +11,8 @@ from .processors import process_system_forecast, process_technology_forecast
 
 
 class AuroraAPI:
+    _registry_columns = ["name", "hash", "currency", "sensitivity", "region_code"]
+
     def __init__(
         self,
         token: str,
@@ -100,14 +102,36 @@ class AuroraAPI:
         """Loads the scenario component registry from the JSON file on disk.
 
         Returns:
-            pd.DataFrame: Registry DataFrame, or an empty DataFrame if the
-                file does not exist or cannot be parsed.
+            pd.DataFrame: Registry DataFrame. If the file does not exist,
+                an empty registry file is created and returned.
         """
+        if not self.scenario_comp_registry_path.exists():
+            self.scenario_comp_registry_path.parent.mkdir(parents=True, exist_ok=True)
+            df_empty = pd.DataFrame(columns=self._registry_columns)
+            df_empty.to_json(self.scenario_comp_registry_path)
+            return df_empty
+
         try:
-            return pd.read_json(self.scenario_comp_registry_path)
+            df_registry = pd.read_json(self.scenario_comp_registry_path)
         except Exception as error:
             print("Error reading scenario component registry:", error)
-            return pd.DataFrame()
+            return pd.DataFrame(columns=self._registry_columns)
+
+        if df_registry.empty:
+            return pd.DataFrame(columns=self._registry_columns)
+
+        for column in self._registry_columns:
+            if column not in df_registry.columns:
+                df_registry[column] = pd.Series(dtype="object")
+
+        return df_registry
+
+    def _save_registry(self) -> None:
+        """Persists the scenario component registry to disk."""
+        self.scenario_comp_registry_path.parent.mkdir(parents=True, exist_ok=True)
+        if self.scenario_comp_registry.empty and not self.scenario_comp_registry.columns.size:
+            self.scenario_comp_registry = pd.DataFrame(columns=self._registry_columns)
+        self.scenario_comp_registry.to_json(self.scenario_comp_registry_path)
 
     def _retrieve_available_forecasts(self) -> None:
         """Fetches available scenarios, currencies, and regions from the Aurora API.
@@ -284,6 +308,7 @@ class AuroraAPI:
 
         if (df_concat_1.empty or df_concat_2.empty) and resolution != "1h":
             print("No new data retrieved.")
+            self._save_registry()
             return self
 
         if not df_concat_1.empty:
@@ -291,7 +316,7 @@ class AuroraAPI:
         if not df_concat_2.empty:
             self.df_technology_scenarios = df_concat_2
 
-        self.scenario_comp_registry.to_json(self.scenario_comp_registry_path)
+        self._save_registry()
 
         self.concat_existing_data(self.df_system_scenarios, self.system_db_path)
         self.concat_existing_data(self.df_technology_scenarios, self.technology_db_path)
