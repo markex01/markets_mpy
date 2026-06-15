@@ -260,7 +260,7 @@ class AuroraAPI:
                 "region_code": region_code,
             }
 
-            print(f"Retrieving data for scenario: {name}")
+            print(f"Retrieving data for scenario: {name} (region: {region_code})")
             df_temp_1 = self.retrieve_single_forecast(
                 hash_value,
                 region_code,
@@ -271,7 +271,7 @@ class AuroraAPI:
             )
 
             if df_temp_1.empty:
-                print(f"No data retrieved for scenario: {name}")
+                print(f"No data retrieved for scenario: {name} (region: {region_code})")
                 continue
 
             df_temp_1["name"] = name
