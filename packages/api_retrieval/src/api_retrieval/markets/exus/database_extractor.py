@@ -63,7 +63,10 @@ class DatabaseExtractor:
         filters: dict = None,
         limit: int = None,
         order_by: str = None,
-        columns: list[str] = None
+        columns: list[str] = None,
+        start: str = None,
+        end: str = None,
+        datetime_col: str = "UTCTime",
     ) -> pd.DataFrame:
 
         conn = self._connect(database)
@@ -71,10 +74,9 @@ class DatabaseExtractor:
         cols = ", ".join(columns) if columns else "*"
         top_clause = f"TOP {limit} " if limit else ""
         query = f"SELECT {top_clause}{cols} FROM {table}"
+        conditions = []
 
         if filters:
-            conditions = []
-
             for col, val in filters.items():
                 if isinstance(val, (list, tuple, set)):
                     formatted_vals = ", ".join(f"'{v}'" for v in val)
@@ -82,6 +84,15 @@ class DatabaseExtractor:
                 else:
                     conditions.append(f"{col} = '{val}'")
 
+        if start:
+            start_dt = pd.to_datetime(start, format="%Y-%m-%d")
+            conditions.append(f"{datetime_col} >= '{start_dt}'")
+
+        if end:
+            end_dt = pd.to_datetime(end, format="%Y-%m-%d") + pd.Timedelta(days=1)
+            conditions.append(f"{datetime_col} < '{end_dt}'")
+
+        if conditions:
             query += " WHERE " + " AND ".join(conditions)
 
         if order_by:
@@ -103,7 +114,7 @@ class DatabaseExtractor:
         """
         Query cross-border flows for a given country.
         direction: 'imports' (flows INTO country) or 'exports' (flows FROM country)
-        start/end: date strings in YYYYMMDD format
+        start/end: date strings in YYYY-MM-DD format
         resolution: e.g. 'PT60M', 'PT15M' — if None, all resolutions are returned
         """
         if direction == "imports":
@@ -121,10 +132,10 @@ class DatabaseExtractor:
         if resolution:
             query += f" AND Resolution = '{resolution}'"
         if start:
-            start_dt = pd.to_datetime(start, format="%Y%m%d")
+            start_dt = pd.to_datetime(start, format="%Y-%m-%d")
             query += f" AND UTCTime >= '{start_dt}'"
         if end:
-            end_dt = pd.to_datetime(end, format="%Y%m%d") + pd.Timedelta(days=1)
+            end_dt = pd.to_datetime(end, format="%Y-%m-%d") + pd.Timedelta(days=1)
             query += f" AND UTCTime < '{end_dt}'"
 
         df = pd.read_sql(query, conn)
