@@ -3,9 +3,6 @@ notebooks/**/*
 !notebooks/**/
 !notebooks/**/*.ipynb
 
-handover
-
-
 # Python cache and build artifacts
 __pycache__/
 *.pyc

@@ -279,6 +279,8 @@ def get_start_date_from_quarterly(quarterly: str) -> str:
         year += 1
     date = datetime(year, month, 1)
     end_date = date - timedelta(days=1)
+    if end_date > datetime.today():
+        end_date = datetime.today().date() - timedelta(days=1)  # Adjust to the previous day if end date is a future date.
     start_date = end_date.replace(year=end_date.year - 2) + timedelta(days=1)
     # change to string format to be able to include in BloombergExtractor
     start_date = start_date.strftime("%Y-%m-%d")
